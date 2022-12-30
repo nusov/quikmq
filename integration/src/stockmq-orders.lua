@@ -86,14 +86,3 @@ function stockmq_update_order(board, id)
         flags=order.flags,
     }
 end
-
--- Get stop order
-function stockmq_get_stop_order_by_id(board, id)
-
-end
-
--- Update stop order
-function stockmq_update_stop_order(board, id)
-    order = stockmq_get_stop_order_by_id(id)
-
-end
