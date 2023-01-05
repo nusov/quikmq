@@ -1,22 +1,16 @@
+#!/usr/bin/env python3
 import asyncio
 import time
 
-from tinkoff.invest import OrderType
-
 from stockmq.rpc import RPCClient
 from stockmq.api import Quik, TimeInForce, Side, QuikTable
-
-
-import zmq
-import msgpack
 
 rpc = RPCClient("tcp://10.211.55.3:8004")
 api = Quik("tcp://10.211.55.3:8004")
 
 client = "CLIENT"
-board = "SPBFUT"
-ticker = "VBU2"
-
+board = "TQBR"
+ticker = "SBER"
 
 
 async def main():
@@ -42,4 +36,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(tx())
+    asyncio.run(main())
