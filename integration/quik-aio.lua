@@ -23,6 +23,9 @@ package.cpath = package.cpath .. ';'
 require("LuaOverMQ")
 
 -- Global constants
+STOCKMQ_ZMQ_REP = 4
+STOCKMQ_ZMQ_PUB = 1
+
 STOCKMQ_RPC_TIMEOUT = 10
 STOCKMQ_RPC_URI = "tcp://0.0.0.0:8004"
 STOCKMQ_PUB_URI = "tcp://0.0.0.0:8005"
@@ -50,7 +53,7 @@ end
 
 -- Set global variable which is used by main() function
 function OnInit(script_path)
-    STOCKMQ_PUB = LuaOverMQ.pub(STOCKMQ_PUB_URI)
+    STOCKMQ_PUB = LuaOverMQ.bind(STOCKMQ_PUB_URI, STOCKMQ_ZMQ_PUB)
     STOCKMQ_RUN = true
 end
 
@@ -62,7 +65,7 @@ end
 
 -- Main function
 function main()
-    local rpc = LuaOverMQ.bind(STOCKMQ_RPC_URI)
+    local rpc = LuaOverMQ.bind(STOCKMQ_RPC_URI, STOCKMQ_ZMQ_REP)
     while STOCKMQ_RUN do
         if rpc:process() ~= 0 then
             message("LuaOverMQ Error: code " .. tostring(rpc:errno()), 1)
