@@ -14,6 +14,21 @@ ticker = "SBER"
 
 
 async def main():
+    # Print version and connection information
+    print(api.info.VERSION)
+    print(api.is_connected)
+
+    # List trade accounts
+    for i in api.trade_accounts:
+        print(i)
+
+    # List classes available to trade
+    for i in api.get_classes():
+        print(i)
+
+    # Call Lua function (magic method)
+    print(api.lua.getScriptPath())
+
     # Create transaction to BUY and wait for completion
     tx = await api.create_order(client, board, ticker, TimeInForce.DAY, Side.BUY, 1600.0, 1)
     print(tx)
