@@ -1,4 +1,4 @@
-module github.com/nusov/quikgo
+module github.com/stockmq/stockmq-quik/go
 
 go 1.18
 
